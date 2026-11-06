@@ -1,0 +1,188 @@
+{
+  "breakeven": {
+    "extended_dominates_full_on_this_set": true,
+    "extended_vs_full_answers_lost": 0,
+    "extended_vs_full_words_saved": 2609,
+    "extended_vs_tiered_answers_gained": 6,
+    "extended_vs_tiered_cost_per_recovered_word": 4.0,
+    "extended_vs_tiered_extra_words": 24,
+    "tiered_vs_full_answers_lost": 6,
+    "tiered_vs_full_breakeven_value_words": 438.833333,
+    "tiered_vs_full_words_saved": 2633
+  },
+  "cost_proxy_note": "words are the Build word-count proxy computed as len(text.split()) over the text actually read. It is not a real tokenizer token count. Operations are counted proxies, not wall time.",
+  "covered_strata_canonical_plus_update": {
+    "extended_correct": 15,
+    "extended_words": 468,
+    "full_correct": 15,
+    "full_words": 2090,
+    "questions": 15,
+    "tiered_correct": 15,
+    "tiered_words": 468
+  },
+  "data_label": "synthetic",
+  "data_note": "Verdict computed from the Build run on three fixed synthetic conversations. No real data, no new benchmark run at this level.",
+  "designs": {
+    "extended": {
+      "accuracy": 0.875,
+      "correct": 21,
+      "correct_per_1000_words": 28.571429,
+      "ops_total": 120,
+      "words_per_correct": 35.0,
+      "words_total": 735
+    },
+    "full": {
+      "accuracy": 0.875,
+      "correct": 21,
+      "correct_per_1000_words": 6.279904,
+      "ops_total": 432,
+      "words_per_correct": 159.238095,
+      "words_total": 3344
+    },
+    "tiered": {
+      "accuracy": 0.625,
+      "correct": 15,
+      "correct_per_1000_words": 21.097046,
+      "ops_total": 120,
+      "words_per_correct": 47.4,
+      "words_total": 711
+    }
+  },
+  "learn_reference": {
+    "full_correct": 8,
+    "full_words_per_correct": 179.0,
+    "full_words_total": 1432,
+    "tiered_correct": 7,
+    "tiered_ratio_vs_full": 5.32342,
+    "tiered_words_per_correct": 38.428571,
+    "tiered_words_total": 269
+  },
+  "level": "deep",
+  "projection": [
+    {
+      "extended_words": 735,
+      "factor": 1,
+      "full_scans_projected": 432,
+      "full_words_projected": 3344,
+      "tiered_ops": 120,
+      "tiered_ratio_projected": 4.703235,
+      "tiered_words": 711
+    },
+    {
+      "extended_words": 735,
+      "factor": 5,
+      "full_scans_projected": 2160,
+      "full_words_projected": 16720,
+      "tiered_ops": 120,
+      "tiered_ratio_projected": 23.516174,
+      "tiered_words": 711
+    },
+    {
+      "extended_words": 735,
+      "factor": 10,
+      "full_scans_projected": 4320,
+      "full_words_projected": 33440,
+      "tiered_ops": 120,
+      "tiered_ratio_projected": 47.032349,
+      "tiered_words": 711
+    },
+    {
+      "extended_words": 735,
+      "factor": 50,
+      "full_scans_projected": 21600,
+      "full_words_projected": 167200,
+      "tiered_ops": 120,
+      "tiered_ratio_projected": 235.161744,
+      "tiered_words": 711
+    },
+    {
+      "extended_words": 735,
+      "factor": 100,
+      "full_scans_projected": 43200,
+      "full_words_projected": 334400,
+      "tiered_ops": 120,
+      "tiered_ratio_projected": 470.323488,
+      "tiered_words": 711
+    }
+  ],
+  "projection_note": "The scaling table is a projection from measured word counts, not a measurement at scale. Assumption: question and fact counts stay fixed while the transcript grows by the factor. If fact counts grow with the transcript, tiered read cost rises and the projected ratios are upper bounds.",
+  "savings": {
+    "extended": {
+      "accuracy_delta_vs_full": 0.0,
+      "correct_delta_vs_full": 0,
+      "fraction_saved_vs_full": 0.780203,
+      "ratio_vs_full": 4.54966,
+      "words_saved_vs_full": 2609
+    },
+    "tiered": {
+      "accuracy_delta_vs_full": -0.25,
+      "correct_delta_vs_full": -6,
+      "fraction_saved_vs_full": 0.78738,
+      "ratio_vs_full": 4.703235,
+      "words_saved_vs_full": 2633
+    }
+  },
+  "source_build": {
+    "conversations": 3,
+    "questions": 24,
+    "turns_total": 54,
+    "words_total": 418
+  },
+  "strata": {
+    "canonical": {
+      "extended_correct": 12,
+      "extended_words": 375,
+      "extended_words_per_correct": 31.25,
+      "full_correct": 12,
+      "full_words": 1672,
+      "full_words_per_correct": 139.333333,
+      "questions": 12,
+      "tiered_correct": 12,
+      "tiered_words": 375,
+      "tiered_words_per_correct": 31.25
+    },
+    "noncanonical_extended": {
+      "extended_correct": 6,
+      "extended_words": 186,
+      "extended_words_per_correct": 31.0,
+      "full_correct": 6,
+      "full_words": 836,
+      "full_words_per_correct": 139.333333,
+      "questions": 6,
+      "tiered_correct": 0,
+      "tiered_words": 162,
+      "tiered_words_per_correct": null
+    },
+    "noncanonical_unhandled": {
+      "extended_correct": 0,
+      "extended_words": 81,
+      "extended_words_per_correct": null,
+      "full_correct": 0,
+      "full_words": 418,
+      "full_words_per_correct": null,
+      "questions": 3,
+      "tiered_correct": 0,
+      "tiered_words": 81,
+      "tiered_words_per_correct": null
+    },
+    "update": {
+      "extended_correct": 3,
+      "extended_words": 93,
+      "extended_words_per_correct": 31.0,
+      "full_correct": 3,
+      "full_words": 418,
+      "full_words_per_correct": 139.333333,
+      "questions": 3,
+      "tiered_correct": 3,
+      "tiered_words": 93,
+      "tiered_words_per_correct": 31.0
+    }
+  },
+  "verdict": {
+    "extension_recovers_all_extended_stratum": true,
+    "no_design_pays_on_unhandled": true,
+    "tiered_fails_on_noncanonical_extended": true,
+    "tiered_pays_on_covered_strata": true,
+    "updates_return_later_value_in_all_designs": true
+  }
+}
