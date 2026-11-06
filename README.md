@@ -60,6 +60,13 @@ Learn level, for reference: full context 8 of 8 (accuracy 1.0, 1432
 words), tiered 7 of 8 (accuracy 0.875, 269 words), on one synthetic
 conversation of 24 turns and 179 words.
 
+## Fan-out
+
+Written fan-out set for v1.0, in fanout/: blog-post.md,
+tutorial.md, website-page.md, linkedin-post.md (DRAFT NOT
+POSTED), paper-candidate.md, and release-notes.md. The channel
+log and per-piece publicity grades are in PUBLICITY.md.
+
 ## Novelty
 
 PROPOSED. See NOVELTY.md. The novelty text is a draft until the Jev claim_check gate passes on it.
