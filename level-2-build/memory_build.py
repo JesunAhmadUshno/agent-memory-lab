@@ -28,7 +28,9 @@ _LEARN_DIR = os.path.join(
 sys.path.insert(0, _LEARN_DIR)
 
 from memory import (  # noqa: E402
-    answer_full, answer_tiered, build_store, store_entry_text,
+    answer_full,
+    answer_tiered,
+    build_store,
     word_count,
 )
 

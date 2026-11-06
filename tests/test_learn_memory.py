@@ -11,9 +11,17 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "level-1-learn"))
 
 from memory import (  # noqa: E402
-    QUESTIONS, TURNS, build_store, answer_full, answer_tiered,
-    extract_value, recent_window, run_all, store_entry_text,
-    transcript_words, word_count,
+    QUESTIONS,
+    TURNS,
+    answer_full,
+    answer_tiered,
+    build_store,
+    extract_value,
+    recent_window,
+    run_all,
+    store_entry_text,
+    transcript_words,
+    word_count,
 )
 
 checks = 0
