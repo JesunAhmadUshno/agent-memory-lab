@@ -18,3 +18,11 @@ jobs:
           cp level-1-learn/results_learn.json /tmp/r1.json
           python level-1-learn/run_learn.py
           diff /tmp/r1.json level-1-learn/results_learn.json
+      - name: build memory tests
+        run: python tests/test_build_memory.py
+      - name: build runner determinism
+        run: |
+          python level-2-build/run_build.py
+          cp level-2-build/results_build.json /tmp/r2.json
+          python level-2-build/run_build.py
+          diff /tmp/r2.json level-2-build/results_build.json
