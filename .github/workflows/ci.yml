@@ -10,3 +10,11 @@ jobs:
           python-version: "3.12"
       - name: scaffold smoke test
         run: python tests/test_smoke.py
+      - name: learn memory tests
+        run: python tests/test_learn_memory.py
+      - name: learn runner determinism
+        run: |
+          python level-1-learn/run_learn.py
+          cp level-1-learn/results_learn.json /tmp/r1.json
+          python level-1-learn/run_learn.py
+          diff /tmp/r1.json level-1-learn/results_learn.json
