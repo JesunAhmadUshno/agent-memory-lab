@@ -2,7 +2,7 @@
 
 Agent memory, light scope: tiered memory against full context on a long-conversation benchmark, one A/B table for accuracy, latency, and cost.
 
-Status: Learn DONE and Build DONE (2026-11-05, ROADMAP-V3-BATCH). Deep is still open. This is not v1.0.
+Status: v1.0. Learn DONE, Build DONE, and Deep DONE (2026-11-05, ROADMAP-V3-BATCH).
 Project: P29. Fleet node: BlackBoxV2. Wave: Waves 6 to 7.
 
 ## Start here
@@ -10,7 +10,8 @@ Project: P29. Fleet node: BlackBoxV2. Wave: Waves 6 to 7.
 1. Read SPEC.md for scope and acceptance criteria.
 2. Read DOSSIER.md for the past, present, and future of this problem.
 3. Read NOVELTY.md for the proposed novelty (DRAFT, pending the Jev claim_check gate).
-4. Start at level-1-learn/README.md, then level-2-build, then level-3-deep.
+4. Start at level-1-learn/README.md, then level-2-build, then level-3-deep/README.md.
+5. Read ROADMAP.md for the v1.1 backlog (the rest of the v2 Deep scope).
 
 ## Level map
 
@@ -22,8 +23,10 @@ Project: P29. Fleet node: BlackBoxV2. Wave: Waves 6 to 7.
   table for accuracy, latency proxy, and cost word proxy, plus a
   separately measured tiered extended design. See
   level-2-build/README.md.
-- Level 3, Deep: OPEN. A short written verdict: where tiered memory
-  pays, where it does not, with the run's numbers.
+- Level 3, Deep: DONE (compressed). A written verdict computed from
+  the Build numbers: where tiered memory pays, where it does not,
+  with break-even and per-stratum analysis and a labelled scaling
+  projection. See level-3-deep/README.md.
 
 ## Benchmarks
 
@@ -36,6 +39,22 @@ time). Full method and per-stratum table: level-2-build/README.md.
 | Full context | 0.875 | 21 of 24 | 432 turns scanned | 3344 |
 | Tiered memory (Learn design) | 0.625 | 15 of 24 | 120 operations | 711 |
 | Tiered extended (Build change) | 0.875 | 21 of 24 | 120 operations | 735 |
+
+Deep verdict, computed 2026-11-05 from the Build numbers above (no
+new benchmark run). Full tables: level-3-deep/README.md.
+
+| Measure | Full | Tiered | Tiered extended |
+| --- | --- | --- | --- |
+| Words per correct answer | 159.238095 | 47.4 | 35.0 |
+| Correct per 1000 words | 6.279904 | 21.097046 | 28.571429 |
+
+Verdict in one line: tiered pays on canonical plus update (15 of 15
+at 468 words against 2090 for full), does not pay in its original
+form on noncanonical_extended (0 of 6), the extension recovers all 6
+for 24 extra words (4.0 per recovered answer), and no design pays on
+noncanonical_unhandled (0 of 3 for all). The scaling table in the
+Deep README is a projection from measured word counts, not a
+measurement at scale.
 
 Learn level, for reference: full context 8 of 8 (accuracy 1.0, 1432
 words), tiered 7 of 8 (accuracy 0.875, 269 words), on one synthetic
