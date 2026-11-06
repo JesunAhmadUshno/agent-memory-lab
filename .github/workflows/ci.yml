@@ -26,3 +26,11 @@ jobs:
           cp level-2-build/results_build.json /tmp/r2.json
           python level-2-build/run_build.py
           diff /tmp/r2.json level-2-build/results_build.json
+      - name: deep memory tests
+        run: python tests/test_deep_memory.py
+      - name: deep runner determinism
+        run: |
+          python level-3-deep/run_deep.py
+          cp level-3-deep/results_deep.json /tmp/r3.json
+          python level-3-deep/run_deep.py
+          diff /tmp/r3.json level-3-deep/results_deep.json
