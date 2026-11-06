@@ -1,7 +1,7 @@
 # DOSSIER: agent-memory-lab (P29)
 
 Written under the documentation and publishing standard (past, present, future). Updated at ship time.
-Version: v2, 2026-11-05 (Build ship). v1 was the 2026-11-04 scaffold.
+Version: v3, 2026-11-05 (v1.0 ship, Deep done). v2 was the Build ship, v1 was the 2026-11-04 scaffold.
 
 ## Past
 
@@ -35,12 +35,30 @@ data only, minus 600). This Build run executed on the Muse VM, not
 the assigned BlackBoxV2 node; that is a named grade deduction, not
 hidden.
 
+Deep (done, 2026-11-05, compressed): the written verdict, computed
+from the Build numbers with no new benchmark run. Tiered memory pays
+on the canonical plus update strata (15 of 15 in both tiered designs
+at 468 words against 2090 for full) and does not pay in its original
+form on noncanonical_extended (0 of 6, the entire accuracy gap).
+Tiered extended recovers all 6 for 24 extra words (4.0 words per
+recovered answer), matching full accuracy at 735 words against 3344
+(35.0 words per correct against 159.238095 for full and 47.4 for
+tiered). No design pays on noncanonical_unhandled (0 of 3 for all).
+Tiered against full saves 2633 words and loses 6 answers, a
+break-even value of 438.833333 words per answer. The scaling table
+is a labelled projection from measured word counts under a fixed
+fact and question count assumption, not a measurement at scale.
+Grade 8,000 of 10,000 with named deductions in
+level-3-deep/README.md. This Deep run also executed on the Muse VM,
+not BlackBoxV2; that is a named grade deduction, not hidden. The
+project is at v1.0: Learn, Build, and Deep done.
+
 ## Future
 
-Deep is still open: a short written verdict on where tiered memory
-pays and where it does not, with the Build numbers, per SPEC.md.
-Known open problems from the Build run: extraction that handles
-value-before-label phrasing, semantic extraction instead of hand
-patterns, and measurement on real long conversations with a real
-tokenizer and wall-time method. Any forecast about this field is
-[unverified] unless a dated primary source is added here.
+The v1.1 backlog is in ROADMAP.md at the repo root: semantic
+extraction, value-before-label coverage, real conversations reported
+separately from synthetic results, real tokenizer and wall-time
+measurement, a scale run where fact counts grow, a history-aware
+store, a fallback policy, and a window policy study. Any forecast
+about this field is [unverified] unless a dated primary source is
+added here.
