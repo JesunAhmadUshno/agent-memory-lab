@@ -14,8 +14,11 @@ sys.path.insert(0, os.path.join(ROOT, "level-2-build"))
 
 from memory import build_store, word_count  # noqa: E402
 from memory_build import (  # noqa: E402
-    CONVERSATIONS, QUESTIONS_BUILD, build_store_extended,
-    conversation_words, run_all,
+    CONVERSATIONS,
+    QUESTIONS_BUILD,
+    build_store_extended,
+    conversation_words,
+    run_all,
 )
 
 checks = 0

@@ -170,7 +170,10 @@ def run_all():
         "level": "learn",
         "data_label": "synthetic",
         "data_note": "One fixed synthetic conversation built in code. No real data.",
-        "cost_proxy_note": "words_read is a word-count proxy computed as len(text.split()) over the text actually read. It is not a real tokenizer token count.",
+        "cost_proxy_note": (
+            "words_read is a word-count proxy computed as len(text.split()) over the text actually read. "
+            "It is not a real tokenizer token count."
+        ),
         "turns": len(TURNS),
         "transcript_words": transcript_words(),
         "recent_window_turns": RECENT_WINDOW,
