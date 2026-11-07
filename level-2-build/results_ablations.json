@@ -23,12 +23,12 @@
         "tiered_words_read": 27
       },
       {
-        "expected": "tulip88",
+        "expected": "Orchid",
         "extended_answer": null,
         "extended_correct": false,
         "extended_words_read": 27,
         "form": "Remember that the X is V",
-        "full_answer": "tulip88",
+        "full_answer": "Orchid",
         "full_correct": true,
         "full_words_read": 137,
         "id": "H2",
