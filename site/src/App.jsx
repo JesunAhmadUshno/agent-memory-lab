@@ -404,6 +404,11 @@ function AB() {
       </div>
       <div className="legend">{DESIGNS.map(([k, l, c]) => <span key={k}><i style={{ background: c }} />{l}</span>)}</div>
       <div className="tip" aria-live="polite">{hover ? `${hover.l} on ${hover.s}: ${hover.v} of ${hover.n} correct.` : 'Hover a bar for its count.'}</div>
+      <p className="hint">
+        Uncertainty (results_ablations.json): Wilson 95% intervals on accuracy are {DESIGNS.map(([k, l]) => `${l.toLowerCase()} ${abl.paired_stats.accuracy_wilson95[k].map((v) => v.toFixed(2)).join(' to ')}`).join(', ')}.
+        Tiered against full context: {abl.paired_stats.mcnemar.full_vs_tiered.only_full} questions only full gets right, {abl.paired_stats.mcnemar.full_vs_tiered.only_tiered} the other way, exact McNemar p = {abl.paired_stats.mcnemar.full_vs_tiered.p_exact_two_sided}.
+        The questions are hand-built, not sampled, so these are a floor on uncertainty, not a population claim.
+      </p>
       <h3 style={{ marginTop: 20 }}>Question explorer (recorded replay of results_build.json)</h3>
       <div className="controls" style={{ marginTop: 10 }}>
         <Select label="Conversation" value={conv} onChange={setConv} options={[['all', 'All conversations'], ...Object.keys(build.per_conversation).map((c) => [c, `Conversation ${c}`])]} />
