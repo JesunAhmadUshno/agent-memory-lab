@@ -13,7 +13,12 @@ thing and reuses the Learn and Build functions by import.
    This adds that one-time write cost: each conversation's words per
    extractor pass, using the passes the code makes (one canonical
    pass for tiered, a canonical pass plus a pattern pass for extended).
-3) Held-out phrasing probe. One new synthetic conversation with six
+3) Paired statistics. Wilson 95% intervals on each design's accuracy
+   and an exact two-sided McNemar (sign) test on the discordant
+   question pairs. The questions are hand-built, not sampled, so these
+   describe sampling noise under an assumption the data does not meet;
+   they are reported to show how little 24 questions can resolve.
+4) Held-out phrasing probe. One new synthetic conversation with six
    facts in phrasings that neither the canonical form nor the two
    extended patterns were written for. The phrasings were written
    after the extended patterns, to differ from them; they are a probe
@@ -22,6 +27,7 @@ thing and reuses the Learn and Build functions by import.
 
 Cost is the same word-count proxy as Build: len(text.split()).
 """
+import math
 import os
 import sys
 
@@ -163,6 +169,37 @@ def heldout():
     }
 
 
+def wilson(k, n, z=1.959964):
+    p = k / n
+    d = 1 + z * z / n
+    c = (p + z * z / (2 * n)) / d
+    h = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d
+    return [round(c - h, 6), round(c + h, 6)]
+
+
+def mcnemar_exact(b, c):
+    """Exact two-sided McNemar p-value from discordant counts b and c."""
+    n = b + c
+    if n == 0:
+        return 1.0
+    tail = sum(math.comb(n, i) for i in range(min(b, c) + 1)) / 2 ** n
+    return round(min(1.0, 2 * tail), 6)
+
+
+def paired_stats(build_results):
+    rows = build_results["per_question"]
+    n = len(rows)
+    out = {"questions": n, "accuracy_wilson95": {}, "mcnemar": {}}
+    for k in ("full", "tiered", "extended"):
+        out["accuracy_wilson95"][k] = wilson(build_results[k + "_correct"], n)
+    for a, b in (("full", "tiered"), ("full", "extended"), ("extended", "tiered")):
+        only_a = sum(1 for r in rows if r[a + "_correct"] and not r[b + "_correct"])
+        only_b = sum(1 for r in rows if r[b + "_correct"] and not r[a + "_correct"])
+        out["mcnemar"][a + "_vs_" + b] = {"only_" + a: only_a, "only_" + b: only_b,
+                                          "p_exact_two_sided": mcnemar_exact(only_a, only_b)}
+    return out
+
+
 def run_ablations():
     b = run_all()
     return {
@@ -175,6 +212,9 @@ def run_ablations():
                            "store-build words (each conversation's words once per extractor pass).",
         "heldout_note": "Six phrasings written after the extended patterns, to differ from them. A probe of "
                         "generalisation, not a random sample, so the counts are not a rate.",
+        "stats_note": "Wilson 95% intervals and exact McNemar tests treat the 24 hand-built questions as if "
+                      "sampled. They are not, so read these as a floor on uncertainty, not a population claim.",
+        "paired_stats": paired_stats(b),
         "window_sweep": window_sweep(),
         "write_time": write_time(b),
         "heldout": heldout(),
