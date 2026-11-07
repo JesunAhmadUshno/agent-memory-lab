@@ -67,6 +67,13 @@ check(h["questions"] == 6 and h["turns"] == 18, "held-out shape")
 check((h["full_correct"], h["tiered_correct"], h["extended_correct"]) == (5, 0, 0), "held-out 5 / 0 / 0")
 check(h["extended_store"] == h["store"] == {"name": "Sam Ortiz"}, "no held-out fact reaches either store")
 
+ps = r["paired_stats"]
+lo, hi = ps["accuracy_wilson95"]["full"]
+check(lo < 21 / 24 < hi, "wilson interval contains the point estimate")
+check(ps["mcnemar"]["full_vs_tiered"] == {"only_full": 6, "only_tiered": 0, "p_exact_two_sided": 0.03125},
+      "tiered loses 6 discordant pairs, p = 2 / 2**6")
+check(ps["mcnemar"]["full_vs_extended"]["p_exact_two_sided"] == 1.0, "no discordant pairs, p = 1")
+
 path = os.path.join(ROOT, "level-2-build", "results_ablations.json")
 check(load("level-2-build", "results_ablations.json") == json.loads(json.dumps(r)), "results file matches run")
 check(os.path.exists(path), "results file present")

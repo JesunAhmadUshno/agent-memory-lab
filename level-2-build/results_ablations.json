@@ -103,6 +103,41 @@
   },
   "heldout_note": "Six phrasings written after the extended patterns, to differ from them. A probe of generalisation, not a random sample, so the counts are not a rate.",
   "level": "build-ablations",
+  "paired_stats": {
+    "accuracy_wilson95": {
+      "extended": [
+        0.689961,
+        0.956557
+      ],
+      "full": [
+        0.689961,
+        0.956557
+      ],
+      "tiered": [
+        0.4271,
+        0.788406
+      ]
+    },
+    "mcnemar": {
+      "extended_vs_tiered": {
+        "only_extended": 6,
+        "only_tiered": 0,
+        "p_exact_two_sided": 0.03125
+      },
+      "full_vs_extended": {
+        "only_extended": 0,
+        "only_full": 0,
+        "p_exact_two_sided": 1.0
+      },
+      "full_vs_tiered": {
+        "only_full": 6,
+        "only_tiered": 0,
+        "p_exact_two_sided": 0.03125
+      }
+    },
+    "questions": 24
+  },
+  "stats_note": "Wilson 95% intervals and exact McNemar tests treat the 24 hand-built questions as if sampled. They are not, so read these as a floor on uncertainty, not a population claim.",
   "window_note": "Window sweep over the 24 Build questions. Window 4 is the recorded Build setting.",
   "window_sweep": [
     {
