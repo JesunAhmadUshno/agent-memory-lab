@@ -46,3 +46,13 @@ jobs:
           cp level-3-deep/results_deep.json /tmp/r3.json
           python level-3-deep/run_deep.py
           diff /tmp/r3.json level-3-deep/results_deep.json
+      - name: ablation and benchmark export tests
+        run: python tests/test_ablations.py
+      - name: ablation runner and export determinism
+        run: |
+          cp level-2-build/results_ablations.json /tmp/r4.json
+          cp level-2-build/benchmark.json /tmp/b4.json
+          python level-2-build/run_ablations.py
+          python level-2-build/export_benchmark.py
+          diff /tmp/r4.json level-2-build/results_ablations.json
+          diff /tmp/b4.json level-2-build/benchmark.json

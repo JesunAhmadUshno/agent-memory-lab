@@ -1,0 +1,453 @@
+{
+  "build": {
+    "conversations": {
+      "A": [
+        "Hi there, I want to chat for a while today.",
+        "Hello, happy to talk through the day with you.",
+        "My name is Maya Chen.",
+        "Nice to meet you, glad you are here.",
+        "My home city is Toronto.",
+        "My favorite color is blue.",
+        "That shade works well in a quiet room.",
+        "My project codename is Aurora.",
+        "By the way, the door code, if you ever need it, happens to be 4821.",
+        "Thanks, I will keep that note for the visit.",
+        "For the record, my backup email is maya@example.com.",
+        "Noted, I will use that address if needed.",
+        "I set 8842 as my locker code, so I will not forget it.",
+        "My pet name is Biscuit.",
+        "My favorite color is green.",
+        "I changed my mind after seeing the garden.",
+        "My next flight number is AC847.",
+        "Thanks for listening through all of this today."
+      ],
+      "B": [
+        "Good morning, I have a lot to share today.",
+        "Morning, I am ready to listen and note things.",
+        "My name is Jonas Reid.",
+        "Good to meet you, please go on when ready.",
+        "My home city is Berlin.",
+        "My favorite food is pasta.",
+        "That dish is filling and easy to share.",
+        "My team codename is Beacon.",
+        "By the way, the gate code, if you ever need it, happens to be 1934.",
+        "Thanks, I will remember that for the gate.",
+        "For the record, my backup email is jonas@example.com.",
+        "Noted, I will use that address if needed.",
+        "I set 5519 as my alarm code, so I will not forget it.",
+        "My dog name is Rocky.",
+        "My favorite food is sushi.",
+        "I changed my mind after the market visit.",
+        "My next train number is ICE721.",
+        "Thanks for listening through all of this today."
+      ],
+      "C": [
+        "Hello there, I want to talk for a while.",
+        "Hello, happy to talk through the day with you.",
+        "My name is Priya Nair.",
+        "Nice to meet you, glad you are here.",
+        "My home city is Mumbai.",
+        "My favorite color is red.",
+        "That shade is bright and warm in summer.",
+        "My study codename is Compass.",
+        "By the way, the safe code, if you ever need it, happens to be 6607.",
+        "Thanks, I will keep that note for the safe.",
+        "For the record, my backup email is priya@example.com.",
+        "Noted, I will use that address if needed.",
+        "I set 2271 as my bike code, so I will not forget it.",
+        "My cat name is Miso.",
+        "My favorite color is yellow.",
+        "I changed my mind after seeing the painting.",
+        "My next bus number is B42.",
+        "Thanks for listening through all of this today."
+      ]
+    },
+    "questions": [
+      {
+        "conversation": "A",
+        "expected": "Maya Chen",
+        "id": "A1",
+        "key_phrase": "my name is",
+        "source_turn": 2,
+        "store_key": "name",
+        "stratum": "canonical"
+      },
+      {
+        "conversation": "A",
+        "expected": "Toronto",
+        "id": "A2",
+        "key_phrase": "my home city is",
+        "source_turn": 4,
+        "store_key": "home city",
+        "stratum": "canonical"
+      },
+      {
+        "conversation": "A",
+        "expected": "Aurora",
+        "id": "A3",
+        "key_phrase": "my project codename is",
+        "source_turn": 7,
+        "store_key": "project codename",
+        "stratum": "canonical"
+      },
+      {
+        "conversation": "A",
+        "expected": "4821",
+        "id": "A4",
+        "key_phrase": "door code",
+        "source_turn": 8,
+        "store_key": "door code",
+        "stratum": "noncanonical_extended"
+      },
+      {
+        "conversation": "A",
+        "expected": "maya@example.com",
+        "id": "A5",
+        "key_phrase": "my backup email is",
+        "source_turn": 10,
+        "store_key": "backup email",
+        "stratum": "noncanonical_extended"
+      },
+      {
+        "conversation": "A",
+        "expected": "8842",
+        "id": "A6",
+        "key_phrase": "locker code",
+        "source_turn": 12,
+        "store_key": "locker code",
+        "stratum": "noncanonical_unhandled"
+      },
+      {
+        "conversation": "A",
+        "expected": "AC847",
+        "id": "A7",
+        "key_phrase": "my next flight number is",
+        "source_turn": 16,
+        "store_key": "next flight number",
+        "stratum": "canonical"
+      },
+      {
+        "conversation": "A",
+        "expected": "green",
+        "id": "A8",
+        "key_phrase": "my favorite color is",
+        "source_turn": 14,
+        "store_key": "favorite color",
+        "stratum": "update"
+      },
+      {
+        "conversation": "B",
+        "expected": "Jonas Reid",
+        "id": "B1",
+        "key_phrase": "my name is",
+        "source_turn": 2,
+        "store_key": "name",
+        "stratum": "canonical"
+      },
+      {
+        "conversation": "B",
+        "expected": "Berlin",
+        "id": "B2",
+        "key_phrase": "my home city is",
+        "source_turn": 4,
+        "store_key": "home city",
+        "stratum": "canonical"
+      },
+      {
+        "conversation": "B",
+        "expected": "Beacon",
+        "id": "B3",
+        "key_phrase": "my team codename is",
+        "source_turn": 7,
+        "store_key": "team codename",
+        "stratum": "canonical"
+      },
+      {
+        "conversation": "B",
+        "expected": "1934",
+        "id": "B4",
+        "key_phrase": "gate code",
+        "source_turn": 8,
+        "store_key": "gate code",
+        "stratum": "noncanonical_extended"
+      },
+      {
+        "conversation": "B",
+        "expected": "jonas@example.com",
+        "id": "B5",
+        "key_phrase": "my backup email is",
+        "source_turn": 10,
+        "store_key": "backup email",
+        "stratum": "noncanonical_extended"
+      },
+      {
+        "conversation": "B",
+        "expected": "5519",
+        "id": "B6",
+        "key_phrase": "alarm code",
+        "source_turn": 12,
+        "store_key": "alarm code",
+        "stratum": "noncanonical_unhandled"
+      },
+      {
+        "conversation": "B",
+        "expected": "ICE721",
+        "id": "B7",
+        "key_phrase": "my next train number is",
+        "source_turn": 16,
+        "store_key": "next train number",
+        "stratum": "canonical"
+      },
+      {
+        "conversation": "B",
+        "expected": "sushi",
+        "id": "B8",
+        "key_phrase": "my favorite food is",
+        "source_turn": 14,
+        "store_key": "favorite food",
+        "stratum": "update"
+      },
+      {
+        "conversation": "C",
+        "expected": "Priya Nair",
+        "id": "C1",
+        "key_phrase": "my name is",
+        "source_turn": 2,
+        "store_key": "name",
+        "stratum": "canonical"
+      },
+      {
+        "conversation": "C",
+        "expected": "Mumbai",
+        "id": "C2",
+        "key_phrase": "my home city is",
+        "source_turn": 4,
+        "store_key": "home city",
+        "stratum": "canonical"
+      },
+      {
+        "conversation": "C",
+        "expected": "Compass",
+        "id": "C3",
+        "key_phrase": "my study codename is",
+        "source_turn": 7,
+        "store_key": "study codename",
+        "stratum": "canonical"
+      },
+      {
+        "conversation": "C",
+        "expected": "6607",
+        "id": "C4",
+        "key_phrase": "safe code",
+        "source_turn": 8,
+        "store_key": "safe code",
+        "stratum": "noncanonical_extended"
+      },
+      {
+        "conversation": "C",
+        "expected": "priya@example.com",
+        "id": "C5",
+        "key_phrase": "my backup email is",
+        "source_turn": 10,
+        "store_key": "backup email",
+        "stratum": "noncanonical_extended"
+      },
+      {
+        "conversation": "C",
+        "expected": "2271",
+        "id": "C6",
+        "key_phrase": "bike code",
+        "source_turn": 12,
+        "store_key": "bike code",
+        "stratum": "noncanonical_unhandled"
+      },
+      {
+        "conversation": "C",
+        "expected": "B42",
+        "id": "C7",
+        "key_phrase": "my next bus number is",
+        "source_turn": 16,
+        "store_key": "next bus number",
+        "stratum": "canonical"
+      },
+      {
+        "conversation": "C",
+        "expected": "yellow",
+        "id": "C8",
+        "key_phrase": "my favorite color is",
+        "source_turn": 14,
+        "store_key": "favorite color",
+        "stratum": "update"
+      }
+    ]
+  },
+  "data_label": "synthetic",
+  "heldout": {
+    "questions": [
+      {
+        "expected": "7710",
+        "form": "lead-in before My",
+        "id": "H1",
+        "key_phrase": "my gym code is",
+        "source_turn": 3,
+        "store_key": "gym code"
+      },
+      {
+        "expected": "tulip88",
+        "form": "Remember that the X is V",
+        "id": "H2",
+        "key_phrase": "wifi password",
+        "source_turn": 5,
+        "store_key": "wifi password"
+      },
+      {
+        "expected": "P14",
+        "form": "turns out to be",
+        "id": "H3",
+        "key_phrase": "parking spot",
+        "source_turn": 7,
+        "store_key": "parking spot"
+      },
+      {
+        "expected": "Lena",
+        "form": "lead-in before my",
+        "id": "H4",
+        "key_phrase": "my sister's name is",
+        "source_turn": 9,
+        "store_key": "sister's name"
+      },
+      {
+        "expected": "31",
+        "form": "By the way without the aside",
+        "id": "H5",
+        "key_phrase": "mailbox number",
+        "source_turn": 11,
+        "store_key": "mailbox number"
+      },
+      {
+        "expected": "12B",
+        "form": "For the record, the X is V",
+        "id": "H6",
+        "key_phrase": "storage unit",
+        "source_turn": 13,
+        "store_key": "storage unit"
+      }
+    ],
+    "turns": [
+      "Hi again, I have a few more things to note today.",
+      "Of course, go ahead whenever you are ready.",
+      "My name is Sam Ortiz.",
+      "Just so you know, my gym code is 7710.",
+      "Got it, I will remember that one.",
+      "Remember that the wifi password is tulip88.",
+      "That is an easy one to keep in mind.",
+      "The parking spot, in case it matters, turns out to be P14.",
+      "Thanks, that helps with the visit.",
+      "Oh, and my sister's name is Lena.",
+      "That is a lovely name.",
+      "By the way, the mailbox number happens to be 31.",
+      "Noted, I will check it later.",
+      "For the record, the storage unit is 12B.",
+      "We spent the afternoon cleaning the garage.",
+      "A tidy garage makes the week easier.",
+      "Thanks for listening through all of this today.",
+      "Talk to you again soon."
+    ]
+  },
+  "learn": {
+    "questions": [
+      {
+        "bucket": "early",
+        "expected": "Maya Chen",
+        "id": "Q1",
+        "key_phrase": "my name is",
+        "source_turn": 2,
+        "store_key": "name"
+      },
+      {
+        "bucket": "early",
+        "expected": "Toronto",
+        "id": "Q2",
+        "key_phrase": "my home city is",
+        "source_turn": 4,
+        "store_key": "home city"
+      },
+      {
+        "bucket": "early",
+        "expected": "Aurora",
+        "id": "Q3",
+        "key_phrase": "my project codename is",
+        "source_turn": 7,
+        "store_key": "project codename"
+      },
+      {
+        "bucket": "middle",
+        "expected": "4821",
+        "id": "Q4",
+        "key_phrase": "door code",
+        "source_turn": 11,
+        "store_key": "door code"
+      },
+      {
+        "bucket": "middle",
+        "expected": "Biscuit",
+        "id": "Q5",
+        "key_phrase": "my pet name is",
+        "source_turn": 13,
+        "store_key": "pet name"
+      },
+      {
+        "bucket": "late",
+        "expected": "green",
+        "id": "Q6",
+        "key_phrase": "my favorite color is",
+        "source_turn": 18,
+        "store_key": "favorite color"
+      },
+      {
+        "bucket": "late",
+        "expected": "ramen",
+        "id": "Q7",
+        "key_phrase": "my favorite food is",
+        "source_turn": 16,
+        "store_key": "favorite food"
+      },
+      {
+        "bucket": "late",
+        "expected": "AC847",
+        "id": "Q8",
+        "key_phrase": "my next flight number is",
+        "source_turn": 21,
+        "store_key": "next flight number"
+      }
+    ],
+    "turns": [
+      "Hi there, I want to chat for a while today.",
+      "Hello, happy to talk through the day with you.",
+      "My name is Maya Chen.",
+      "Nice to meet you, glad you are here.",
+      "My home city is Toronto.",
+      "My favorite color is blue.",
+      "That shade works well in a quiet room.",
+      "My project codename is Aurora.",
+      "Noted, that sounds bright and clear.",
+      "We spent the morning sorting papers and making tea.",
+      "A slow morning can help clear the mind.",
+      "By the way, the door code, if you ever need it, happens to be 4821.",
+      "Thanks, I will keep that note for the visit.",
+      "My pet name is Biscuit.",
+      "What a friendly companion to have around.",
+      "We talked about rain, books, and long walks.",
+      "My favorite food is ramen.",
+      "That dish is warm and filling on cold days.",
+      "My favorite color is green.",
+      "I changed my mind after seeing the garden.",
+      "The afternoon passed with music and quiet reading.",
+      "My next flight number is AC847.",
+      "That trip sounds like a good break soon.",
+      "Thanks for listening through all of this today."
+    ]
+  },
+  "note": "Benchmark inputs exported from level-1-learn/memory.py, level-2-build/memory_build.py and level-2-build/ablations.py. Synthetic conversations built in code, no real data.",
+  "recent_window": 4
+}
