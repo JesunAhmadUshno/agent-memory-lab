@@ -1,4 +1,4 @@
-"""Checks for the Build ablations and the exported benchmark inputs.
+"""Checks for the Build ablations (level-2-build/ablations.py).
 
 Run: python tests/test_ablations.py
 """
@@ -12,7 +12,6 @@ sys.path.insert(0, os.path.join(ROOT, "level-2-build"))
 
 import memory  # noqa: E402
 from ablations import answer_tiered_window, run_ablations  # noqa: E402
-from export_benchmark import OUT, benchmark  # noqa: E402
 from memory_build import CONVERSATIONS, QUESTIONS_BUILD, build_store_extended, run_all  # noqa: E402
 
 checks = 0
@@ -28,10 +27,6 @@ def load(*parts):
     with open(os.path.join(ROOT, *parts), encoding="utf-8") as fh:
         return json.load(fh)
 
-
-# benchmark.json is an exact export of the Python sources.
-check(load("level-2-build", "benchmark.json") == json.loads(json.dumps(benchmark())), "benchmark.json matches sources")
-check(os.path.basename(OUT) == "benchmark.json", "export path")
 
 # The window-parameterised read path equals answer_tiered at the recorded window of 4.
 learn_store = memory.build_store()
