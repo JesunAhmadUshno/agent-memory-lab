@@ -1,0 +1,315 @@
+{
+  "cost_proxy_note": "words are the Build word-count proxy, len(text.split()) over the text read. Not a real tokenizer token count.",
+  "data_label": "synthetic",
+  "heldout": {
+    "extended_correct": 0,
+    "extended_store": {
+      "name": "Sam Ortiz"
+    },
+    "full_correct": 5,
+    "per_question": [
+      {
+        "expected": "7710",
+        "extended_answer": null,
+        "extended_correct": false,
+        "extended_words_read": 27,
+        "form": "lead-in before My",
+        "full_answer": "7710",
+        "full_correct": true,
+        "full_words_read": 137,
+        "id": "H1",
+        "tiered_answer": null,
+        "tiered_correct": false,
+        "tiered_words_read": 27
+      },
+      {
+        "expected": "tulip88",
+        "extended_answer": null,
+        "extended_correct": false,
+        "extended_words_read": 27,
+        "form": "Remember that the X is V",
+        "full_answer": "tulip88",
+        "full_correct": true,
+        "full_words_read": 137,
+        "id": "H2",
+        "tiered_answer": null,
+        "tiered_correct": false,
+        "tiered_words_read": 27
+      },
+      {
+        "expected": "P14",
+        "extended_answer": null,
+        "extended_correct": false,
+        "extended_words_read": 27,
+        "form": "turns out to be",
+        "full_answer": null,
+        "full_correct": false,
+        "full_words_read": 137,
+        "id": "H3",
+        "tiered_answer": null,
+        "tiered_correct": false,
+        "tiered_words_read": 27
+      },
+      {
+        "expected": "Lena",
+        "extended_answer": null,
+        "extended_correct": false,
+        "extended_words_read": 27,
+        "form": "lead-in before my",
+        "full_answer": "Lena",
+        "full_correct": true,
+        "full_words_read": 137,
+        "id": "H4",
+        "tiered_answer": null,
+        "tiered_correct": false,
+        "tiered_words_read": 27
+      },
+      {
+        "expected": "31",
+        "extended_answer": null,
+        "extended_correct": false,
+        "extended_words_read": 27,
+        "form": "By the way without the aside",
+        "full_answer": "31",
+        "full_correct": true,
+        "full_words_read": 137,
+        "id": "H5",
+        "tiered_answer": null,
+        "tiered_correct": false,
+        "tiered_words_read": 27
+      },
+      {
+        "expected": "12B",
+        "extended_answer": null,
+        "extended_correct": false,
+        "extended_words_read": 27,
+        "form": "For the record, the X is V",
+        "full_answer": "12B",
+        "full_correct": true,
+        "full_words_read": 137,
+        "id": "H6",
+        "tiered_answer": null,
+        "tiered_correct": false,
+        "tiered_words_read": 27
+      }
+    ],
+    "questions": 6,
+    "store": {
+      "name": "Sam Ortiz"
+    },
+    "tiered_correct": 0,
+    "turns": 18,
+    "words": 137
+  },
+  "heldout_note": "Six phrasings written after the extended patterns, to differ from them. A probe of generalisation, not a random sample, so the counts are not a rate.",
+  "level": "build-ablations",
+  "window_note": "Window sweep over the 24 Build questions. Window 4 is the recorded Build setting.",
+  "window_sweep": [
+    {
+      "extended_correct": 21,
+      "extended_ops": 24,
+      "extended_words": 87,
+      "tiered_correct": 15,
+      "tiered_ops": 24,
+      "tiered_words": 63,
+      "window": 0
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 48,
+      "extended_words": 279,
+      "tiered_correct": 15,
+      "tiered_ops": 48,
+      "tiered_words": 255,
+      "window": 1
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 72,
+      "extended_words": 423,
+      "tiered_correct": 15,
+      "tiered_ops": 72,
+      "tiered_words": 399,
+      "window": 2
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 96,
+      "extended_words": 615,
+      "tiered_correct": 15,
+      "tiered_ops": 96,
+      "tiered_words": 591,
+      "window": 3
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 120,
+      "extended_words": 735,
+      "tiered_correct": 15,
+      "tiered_ops": 120,
+      "tiered_words": 711,
+      "window": 4
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 144,
+      "extended_words": 855,
+      "tiered_correct": 15,
+      "tiered_ops": 144,
+      "tiered_words": 831,
+      "window": 5
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 168,
+      "extended_words": 1167,
+      "tiered_correct": 15,
+      "tiered_ops": 168,
+      "tiered_words": 1143,
+      "window": 6
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 192,
+      "extended_words": 1359,
+      "tiered_correct": 15,
+      "tiered_ops": 192,
+      "tiered_words": 1335,
+      "window": 7
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 216,
+      "extended_words": 1551,
+      "tiered_correct": 18,
+      "tiered_ops": 216,
+      "tiered_words": 1527,
+      "window": 8
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 240,
+      "extended_words": 1759,
+      "tiered_correct": 18,
+      "tiered_ops": 240,
+      "tiered_words": 1735,
+      "window": 9
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 264,
+      "extended_words": 2119,
+      "tiered_correct": 21,
+      "tiered_ops": 264,
+      "tiered_words": 2095,
+      "window": 10
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 288,
+      "extended_words": 2239,
+      "tiered_correct": 21,
+      "tiered_ops": 288,
+      "tiered_words": 2215,
+      "window": 11
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 312,
+      "extended_words": 2431,
+      "tiered_correct": 21,
+      "tiered_ops": 312,
+      "tiered_words": 2407,
+      "window": 12
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 336,
+      "extended_words": 2551,
+      "tiered_correct": 21,
+      "tiered_ops": 336,
+      "tiered_words": 2527,
+      "window": 13
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 360,
+      "extended_words": 2671,
+      "tiered_correct": 21,
+      "tiered_ops": 360,
+      "tiered_words": 2647,
+      "window": 14
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 384,
+      "extended_words": 2871,
+      "tiered_correct": 21,
+      "tiered_ops": 384,
+      "tiered_words": 2847,
+      "window": 15
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 408,
+      "extended_words": 2991,
+      "tiered_correct": 21,
+      "tiered_ops": 408,
+      "tiered_words": 2967,
+      "window": 16
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 432,
+      "extended_words": 3207,
+      "tiered_correct": 21,
+      "tiered_ops": 432,
+      "tiered_words": 3183,
+      "window": 17
+    },
+    {
+      "extended_correct": 21,
+      "extended_ops": 456,
+      "extended_words": 3431,
+      "tiered_correct": 21,
+      "tiered_ops": 456,
+      "tiered_words": 3407,
+      "window": 18
+    }
+  ],
+  "write_time": {
+    "designs": {
+      "extended": {
+        "correct": 21,
+        "extractor_passes": 2,
+        "ratio_full_vs_total": 2.128581,
+        "read_words": 735,
+        "total_words": 1571,
+        "total_words_one_pass": 1153,
+        "write_words": 836
+      },
+      "full": {
+        "correct": 21,
+        "read_words": 3344,
+        "total_words": 3344,
+        "write_words": 0
+      },
+      "tiered": {
+        "correct": 15,
+        "extractor_passes": 1,
+        "ratio_full_vs_total": 2.961913,
+        "read_words": 711,
+        "total_words": 1129,
+        "total_words_one_pass": 1129,
+        "write_words": 418
+      }
+    },
+    "one_pass_words": 418,
+    "per_conversation_words": {
+      "A": 140,
+      "B": 139,
+      "C": 139
+    }
+  },
+  "write_time_note": "Derived from recorded counts: read words from the Build run plus one-time store-build words (each conversation's words once per extractor pass)."
+}
