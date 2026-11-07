@@ -2,6 +2,11 @@
 
 Agent memory, light scope: tiered memory against full context on a long-conversation benchmark, one A/B table for accuracy, latency, and cost.
 
+Live dashboard: https://jesunahmadushno.github.io/agent-memory-lab/
+(an in-browser port of the memory designs, checked at build time
+against the results files; source in site/, built by
+.github/workflows/pages.yml).
+
 Status: v1.0. Learn DONE, Build DONE, and Deep DONE (2026-11-05, ROADMAP-V3-BATCH).
 Project: P29. Fleet node: BlackBoxV2. Wave: Waves 6 to 7.
 
@@ -59,6 +64,30 @@ measurement at scale.
 Learn level, for reference: full context 8 of 8 (accuracy 1.0, 1432
 words), tiered 7 of 8 (accuracy 0.875, 269 words), on one synthetic
 conversation of 24 turns and 179 words.
+
+## Ablations and research review
+
+level-2-build/ablations.py (run: python level-2-build/run_ablations.py,
+tests: python tests/test_ablations.py) adds three cheap checks to the
+Build run, written to level-2-build/results_ablations.json:
+
+- Window sweep, 0 to 18 turns. Window 4 reproduces the recorded
+  15 of 24 at 711 words (tiered) and 21 of 24 at 735 words
+  (extended). Tiered reaches 21 of 24 only at a 10-turn window,
+  reading 2095 words.
+- Write-time cost. Building the store reads each conversation once
+  per extractor pass (418 words per pass). Read plus write: tiered
+  1129 words, extended 1571 (two passes), full context 3344.
+- Paired statistics. Wilson 95% intervals on accuracy (full and
+  extended 0.69 to 0.96, tiered 0.43 to 0.79) and an exact McNemar
+  test: tiered against full has 6 discordant questions, all lost,
+  p = 0.03125. The questions are hand-built, not sampled.
+- Held-out phrasing probe. Six new phrasings written after the
+  extended patterns: full context 5 of 6, tiered 0 of 6, extended
+  0 of 6. The extension does not generalise beyond its two forms.
+
+docs/research-review.md grades the study against a research rubric
+and lists what each remaining gap needs.
 
 ## Fan-out
 
