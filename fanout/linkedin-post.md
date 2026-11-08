@@ -40,8 +40,7 @@ unhandled form, value before label, every design scores 0 of 3,
 including full context: re-reading everything does not fix an
 extraction failure.
 
-Grades, house scale: Learn 8,500, Build 7,850, Deep 8,000 of
-10,000. 428 checks in total, plus the smoke test. Semantic
+428 checks in total, plus the smoke test. Semantic
 extraction and real conversation data are v1.1 items, and they
 are not claimed here.
 

@@ -1,104 +1,81 @@
 # agent-memory-lab
 
-Agent memory, light scope: tiered memory against full context on a long-conversation benchmark, one A/B table for accuracy, latency, and cost.
+**Question.** When does a tiered memory (facts extracted into a small
+store as they are said, plus a short recent window) answer recall
+questions about a long conversation as well as re-reading the whole
+transcript, and at what read cost?
+
+**Headline.** On 24 hand-built synthetic questions, the tiered store read
+4.7 times fewer words than a full-transcript scan (711 against 3344) but
+answered 15 of 24 against 21 of 24 (accuracy 0.625, Wilson 95% interval
+0.43 to 0.79, against 0.875, 0.69 to 0.96; exact McNemar p = 0.031, all
+6 discordant questions lost); two added extraction patterns recovered
+all 6 at 735 words but scored 0 of 6 on held-out phrasings.
+
+**Field.** ML and AI research. **Job family.** AI and LLM engineering
+(agent memory).
+
+**Verdict.** Functional, not pre-registered. Tests pass in CI on Python
+3.11 and 3.12, one command regenerates every results file byte for byte,
+and the full study has run end to end with its results committed. The
+hypotheses were written alongside the code, not locked before it, so the
+repo is capped at Functional (PROPOSAL.md says what a locked
+confirmatory cycle would need). Both designs are hand-written patterns,
+not language models: "full context" here is a pattern scan of the
+transcript.
 
 Live dashboard: https://jesunahmadushno.github.io/agent-memory-lab/
-(an in-browser port of the memory designs, checked at build time
-against the results files; source in site/, built by
-.github/workflows/pages.yml).
 
-Status: v1.0. Learn DONE, Build DONE, and Deep DONE (2026-11-05, ROADMAP-V3-BATCH).
-Project: P29. Fleet node: BlackBoxV2. Wave: Waves 6 to 7.
+## Reproduce
 
-## Start here
+```text
+python src/make_results.py --check
+python tests/test_smoke.py && python tests/test_learn_memory.py && python tests/test_build_memory.py && python tests/test_deep_memory.py && python tests/test_ablations.py
+```
 
-1. Read SPEC.md for scope and acceptance criteria.
-2. Read DOSSIER.md for the past, present, and future of this problem.
-3. Read NOVELTY.md for the proposed novelty (DRAFT, pending the Jev claim_check gate).
-4. Start at level-1-learn/README.md, then level-2-build, then level-3-deep/README.md.
-5. Read ROADMAP.md for the v1.1 backlog (the rest of the v2 Deep scope).
+Python 3 standard library only, no dependencies, seconds to run. The
+first command recomputes all four results files from the code and fails
+if any differs from the committed file; drop `--check` to rewrite them.
+The single-level runners (src/run_learn.py, src/run_build.py,
+src/run_ablations.py, src/run_deep.py) do the same for one file each and
+print a summary.
 
-## Level map
+Evidence honesty: all data is synthetic and built in code; cost is a
+word-count proxy (not tokenizer tokens) and latency a counted proxy (no
+wall-clock time); the 24 questions are hand-built, not sampled, so the
+intervals are a floor on uncertainty, not a population estimate.
 
-- Level 1, Learn: DONE. Full context against tiered memory on one
-  synthetic conversation (24 turns, 8 questions): full 8 of 8,
-  tiered 7 of 8. See level-1-learn/README.md.
-- Level 2, Build: DONE. The A/B run at larger scale: three synthetic
-  conversations (54 turns, 24 questions, four named strata), one
-  table for accuracy, latency proxy, and cost word proxy, plus a
-  separately measured tiered extended design. See
-  level-2-build/README.md.
-- Level 3, Deep: DONE (compressed). A written verdict computed from
-  the Build numbers: where tiered memory pays, where it does not,
-  with break-even and per-stratum analysis and a labelled scaling
-  projection. See level-3-deep/README.md.
+## Lifecycle
 
-## Benchmarks
+- Question: DONE 2026-11-04
+- Proposal: DRAFT 2026-11-08
+- Baseline: DONE 2026-11-05
+- Build: DONE 2026-11-05
+- Evaluate: OPEN
+- Report: DRAFT 2026-11-08
+- Review: OPEN
+- Release: OPEN
 
-Build level, measured 2026-11-05, synthetic data only, word-count
-cost proxy (not real tokens) and counted latency proxy (no wall
-time). Full method and per-stratum table: level-2-build/README.md.
+Proposal is a retrospective draft, not a lock: the plan was never tagged
+before results existed. Evaluate stays open because the ML field profile
+is not met (no model baseline, no sampled data). The old tags v0.1, v0.5
+and v1.0 mark the Learn, Build and Deep merges of the earlier ladder;
+they are kept as history and are not a v1.0 release under this standard.
 
-| Design | Accuracy | Correct | Latency proxy (counted) | Cost proxy (words read) |
-| --- | --- | --- | --- | --- |
-| Full context | 0.875 | 21 of 24 | 432 turns scanned | 3344 |
-| Tiered memory (Learn design) | 0.625 | 15 of 24 | 120 operations | 711 |
-| Tiered extended (Build change) | 0.875 | 21 of 24 | 120 operations | 735 |
+## Layout
 
-Deep verdict, computed 2026-11-05 from the Build numbers above (no
-new benchmark run). Full tables: level-3-deep/README.md.
-
-| Measure | Full | Tiered | Tiered extended |
-| --- | --- | --- | --- |
-| Words per correct answer | 159.238095 | 47.4 | 35.0 |
-| Correct per 1000 words | 6.279904 | 21.097046 | 28.571429 |
-
-Verdict in one line: tiered pays on canonical plus update (15 of 15
-at 468 words against 2090 for full), does not pay in its original
-form on noncanonical_extended (0 of 6), the extension recovers all 6
-for 24 extra words (4.0 per recovered answer), and no design pays on
-noncanonical_unhandled (0 of 3 for all). The scaling table in the
-Deep README is a projection from measured word counts, not a
-measurement at scale.
-
-Learn level, for reference: full context 8 of 8 (accuracy 1.0, 1432
-words), tiered 7 of 8 (accuracy 0.875, 269 words), on one synthetic
-conversation of 24 turns and 179 words.
-
-## Ablations and research review
-
-level-2-build/ablations.py (run: python level-2-build/run_ablations.py,
-tests: python tests/test_ablations.py) adds three cheap checks to the
-Build run, written to level-2-build/results_ablations.json:
-
-- Window sweep, 0 to 18 turns. Window 4 reproduces the recorded
-  15 of 24 at 711 words (tiered) and 21 of 24 at 735 words
-  (extended). Tiered reaches 21 of 24 only at a 10-turn window,
-  reading 2095 words.
-- Write-time cost. Building the store reads each conversation once
-  per extractor pass (418 words per pass). Read plus write: tiered
-  1129 words, extended 1571 (two passes), full context 3344.
-- Paired statistics. Wilson 95% intervals on accuracy (full and
-  extended 0.69 to 0.96, tiered 0.43 to 0.79) and an exact McNemar
-  test: tiered against full has 6 discordant questions, all lost,
-  p = 0.03125. The questions are hand-built, not sampled.
-- Held-out phrasing probe. Six new phrasings written after the
-  extended patterns: full context 5 of 6, tiered 0 of 6, extended
-  0 of 6. The extension does not generalise beyond its two forms.
-
-docs/research-review.md grades the study against a research rubric
-and lists what each remaining gap needs.
-
-## Fan-out
-
-Written fan-out set for v1.0, in fanout/: blog-post.md,
-tutorial.md, website-page.md, linkedin-post.md (DRAFT NOT
-POSTED), paper-candidate.md, and release-notes.md. The channel
-log and per-piece publicity grades are in PUBLICITY.md.
-
-## Novelty
-
-PROPOSED. See NOVELTY.md. The novelty text is a draft until the Jev claim_check gate passes on it.
+| Path | What it holds |
+| --- | --- |
+| PROPOSAL.md | Question, prior work, hypotheses H1 to H6 with pass lines (retrospective, not locked), design, next cycle |
+| REPORT.md | Background, method, results for Learn, Build, Deep and the ablations, every hypothesis scored, misses, threats, related work |
+| src/ | memory.py (Learn designs), memory_build.py (Build A/B), ablations.py, verdict.py (Deep), make_results.py and the four runners |
+| tests/ | Hand-computed oracle tests per level (76 Learn, 284 Build, 68 Deep, 132 ablation checks) and the layout check |
+| experiments/ | The three dated level designs with their hand-computed oracles (moved from level-*/\*-SPEC.md) |
+| results/ | results_learn.json, results_build.json, results_ablations.json, results_deep.json, regenerated by src/make_results.py |
+| docs/decisions/ | Records of the hard-to-reverse choices: synthetic data and proxies (0001), pattern extractors with no model (0002) |
+| docs/publicity.md | Channel log for the written fan-out (moved from PUBLICITY.md) |
+| fanout/ | Dated drafts written at the 2026-11-05 ladder release (blog, tutorial, website copy, LinkedIn draft not posted, paper brief, release notes) |
+| site/ | The live dashboard: a JavaScript port of the designs, checked at build time against results/ |
 
 ## License
 

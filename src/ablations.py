@@ -33,7 +33,6 @@ import sys
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _HERE)
-sys.path.insert(0, os.path.join(os.path.dirname(_HERE), "level-1-learn"))
 
 from memory import answer_full, build_store, extract_value, store_entry_text, word_count  # noqa: E402
 from memory_build import CONVERSATIONS, QUESTIONS_BUILD, build_store_extended, conversation_words, run_all  # noqa: E402

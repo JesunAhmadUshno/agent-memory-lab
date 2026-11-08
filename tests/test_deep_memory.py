@@ -1,6 +1,6 @@
 """Hand-computed Deep tests for agent-memory-lab.
 
-Every expected value below is an oracle from level-3-deep/DEEP-SPEC.md,
+Every expected value below is an oracle from experiments/2026-11-05-deep-design.md,
 computed by hand from the Build per-question rows before the Deep code
 ran. Run: python tests/test_deep_memory.py
 """
@@ -9,7 +9,7 @@ import os
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(ROOT, "level-3-deep"))
+sys.path.insert(0, os.path.join(ROOT, "src"))
 
 from verdict import run_deep  # noqa: E402
 
@@ -185,7 +185,7 @@ check(lr["tiered_words_per_correct"] == 38.428571,
 check(lr["tiered_ratio_vs_full"] == 5.32342, "learn ratio")
 
 # Results file, if present, matches the runner output exactly.
-path = os.path.join(ROOT, "level-3-deep", "results_deep.json")
+path = os.path.join(ROOT, "results", "results_deep.json")
 if os.path.exists(path):
     with open(path, encoding="utf-8") as fh:
         saved = json.load(fh)

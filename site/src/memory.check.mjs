@@ -9,11 +9,11 @@ import { buildStore, buildStoreExtended, runSet, totalCost, projectedRatio } fro
 const root = new URL('../../', import.meta.url);
 const read = (p) => readFileSync(new URL(p, root), 'utf8');
 const json = (p) => JSON.parse(read(p));
-const bench = loadBenchmark({ memoryPy: read('level-1-learn/memory.py'), buildPy: read('level-2-build/memory_build.py'), ablationsPy: read('level-2-build/ablations.py') });
-const learn = json('level-1-learn/results_learn.json');
-const build = json('level-2-build/results_build.json');
-const abl = json('level-2-build/results_ablations.json');
-const deep = json('level-3-deep/results_deep.json');
+const bench = loadBenchmark({ memoryPy: read('src/memory.py'), buildPy: read('src/memory_build.py'), ablationsPy: read('src/ablations.py') });
+const learn = json('results/results_learn.json');
+const build = json('results/results_build.json');
+const abl = json('results/results_ablations.json');
+const deep = json('results/results_deep.json');
 const obj = (m) => Object.fromEntries(m);
 let n = 0;
 const eq = (a, b, msg) => { assert.deepEqual(a, b, msg); n++; };

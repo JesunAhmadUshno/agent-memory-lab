@@ -25,7 +25,7 @@ Latency is a counted proxy (turns scanned or operations counted);
 no wall-clock time is measured. Extractors are hand-written
 patterns; there is no semantic retrieval. The levels executed on
 the Muse VM, not the assigned BlackBoxV2 fleet node; that is a
-named grade deduction in each level README, not hidden.
+named limitation in REPORT.md, not hidden.
 
 ## What was built
 
@@ -33,17 +33,17 @@ Learn: both designs on one synthetic conversation (24 turns, 179
 words, 8 questions). Full context 8 of 8 (accuracy 1.0, 1432
 words); tiered memory 7 of 8 (accuracy 0.875, 269 words). The
 single tiered miss was the door code, stated in a form the
-write-time extractor does not match. Grade 8,500 of 10,000.
+write-time extractor does not match.
 
 Build: the same A/B comparison at larger scale, plus one
 separately measured design change. Three synthetic conversations
 (54 turns, 418 words, 24 questions) in four named strata:
 canonical (12), update (3), noncanonical_extended (6), and
-noncanonical_unhandled (3). Grade 7,850 of 10,000.
+noncanonical_unhandled (3).
 
 Deep: no new benchmark run. A written verdict computed from the
 Build numbers, with per-stratum analysis, break-even, and a
-labelled scaling projection. Grade 8,000 of 10,000.
+labelled scaling projection.
 
 ## The main result
 

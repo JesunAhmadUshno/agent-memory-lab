@@ -14,8 +14,7 @@ words; tiered memory (a canonical fact store of 7 entries plus a
 269 words. The single tiered miss was Q4, the door code, whose
 non-canonical phrasing the write-time extractor missed. 76
 hand-computed Learn checks plus the scaffold smoke test;
-results_learn.json byte-identical across two runs. Grade 8,500
-of 10,000. All data synthetic; cost is a word-count proxy and
+results_learn.json byte-identical across two runs. All data synthetic; cost is a word-count proxy and
 latency a counted proxy, labelled as such.
 
 ## v0.5: Build, A/B run, full context vs tiered memory
@@ -32,7 +31,7 @@ operations); tiered extended, measured separately, 21 of 24
 noncanonical_unhandled and 3 of 3 on update questions. 284
 hand-computed Build checks plus the 76 Learn checks and the
 scaffold smoke test; results_build.json byte-identical across
-two runs. Grade 7,850 of 10,000.
+two runs.
 
 ## v1.0: agent-memory-lab, Learn, Build and Deep done
 
@@ -53,7 +52,6 @@ words per answer. The scaling table is a labelled projection,
 not a measurement at scale. 68 hand-computed Deep checks plus
 the 284 Build checks, the 76 Learn checks, and the scaffold
 smoke test; results_deep.json byte-identical across two runs.
-Grade 8,000 of 10,000.
 
 The v1.1 backlog is ROADMAP.md in the repo: semantic extraction,
 value-before-label coverage, real conversations reported

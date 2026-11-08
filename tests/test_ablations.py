@@ -1,4 +1,4 @@
-"""Checks for the Build ablations (level-2-build/ablations.py).
+"""Checks for the Build ablations (src/ablations.py).
 
 Run: python tests/test_ablations.py
 """
@@ -7,8 +7,7 @@ import os
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(ROOT, "level-1-learn"))
-sys.path.insert(0, os.path.join(ROOT, "level-2-build"))
+sys.path.insert(0, os.path.join(ROOT, "src"))
 
 import memory  # noqa: E402
 from ablations import answer_tiered_window, run_ablations  # noqa: E402
@@ -74,8 +73,8 @@ check(ps["mcnemar"]["full_vs_tiered"] == {"only_full": 6, "only_tiered": 0, "p_e
       "tiered loses 6 discordant pairs, p = 2 / 2**6")
 check(ps["mcnemar"]["full_vs_extended"]["p_exact_two_sided"] == 1.0, "no discordant pairs, p = 1")
 
-path = os.path.join(ROOT, "level-2-build", "results_ablations.json")
-check(load("level-2-build", "results_ablations.json") == json.loads(json.dumps(r)), "results file matches run")
+path = os.path.join(ROOT, "results", "results_ablations.json")
+check(load("results", "results_ablations.json") == json.loads(json.dumps(r)), "results file matches run")
 check(os.path.exists(path), "results file present")
 
 print("ablation tests: PASS,", checks, "checks")

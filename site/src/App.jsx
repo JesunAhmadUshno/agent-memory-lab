@@ -1,15 +1,13 @@
 import { useMemo, useState, useEffect, useId } from 'react';
-import learn from '../../level-1-learn/results_learn.json';
-import build from '../../level-2-build/results_build.json';
-import abl from '../../level-2-build/results_ablations.json';
-import deep from '../../level-3-deep/results_deep.json';
-import memoryPy from '../../level-1-learn/memory.py?raw';
-import buildPy from '../../level-2-build/memory_build.py?raw';
-import ablationsPy from '../../level-2-build/ablations.py?raw';
-import learnReadme from '../../level-1-learn/README.md?raw';
-import buildReadme from '../../level-2-build/README.md?raw';
-import deepReadme from '../../level-3-deep/README.md?raw';
-import docsIndex from '../../docs/index.md?raw';
+import learn from '../../results/results_learn.json';
+import build from '../../results/results_build.json';
+import abl from '../../results/results_ablations.json';
+import deep from '../../results/results_deep.json';
+import memoryPy from '../../src/memory.py?raw';
+import buildPy from '../../src/memory_build.py?raw';
+import ablationsPy from '../../src/ablations.py?raw';
+import readme from '../../README.md?raw';
+import report from '../../REPORT.md?raw';
 import { loadBenchmark } from './sources.js';
 import { buildStore, buildStoreExtended, answerFull, answerTiered, storedBy, runSet, totalCost, projectedRatio, wordCount } from './memory.js';
 
@@ -22,8 +20,11 @@ const D = deep.designs;
 const Q = deep.source_build.questions;
 const DESIGNS = [['full', 'Full context', 'var(--muted)'], ['tiered', 'Tiered memory', 'var(--warn)'], ['extended', 'Tiered extended', 'var(--primary)']];
 const STRATA = ['canonical', 'update', 'noncanonical_extended', 'noncanonical_unhandled'];
-const sha = (md) => /sha256 ([0-9a-f]{64})/.exec(md)[1];
-const checks = /\((\d+) Learn, (\d+) Build, (\d+) Deep\)/.exec(docsIndex).slice(1).map(Number);
+const sha = (file) => new RegExp(`results/${file} \\| sha256 ([0-9a-f]{64})`).exec(report)[1];
+const checks = /\((\d+) Learn, (\d+) Build, (\d+) Deep\)/.exec(report).slice(1).map(Number);
+// Stages and verdict are read from README.md, word for word.
+const stages = [...readme.matchAll(/^- (\w+): ([A-Z]+)(?: (\d{4}-\d{2}-\d{2}))?$/gm)].map((m) => m.slice(1));
+const verdict = (readme.match(/^\*\*Verdict\.\*\* ([^.]+)/m) || [])[1];
 const convTurns = (c) => (c === 'learn' ? bench.learn.turns : bench.build.conversations[c]);
 const convQuestions = (c) => (c === 'learn' ? bench.learn.questions : bench.build.questions.filter((q) => q.conversation === c));
 
@@ -46,10 +47,8 @@ function MenuBar() {
     <div className="menubar" role="banner">
       <span className="apple" aria-hidden="true">◆</span>
       <a className="app" href="#top">Agent Memory Lab</a>
-      <a className="m" href={blob('level-1-learn/README.md')}>Learn</a>
-      <a className="m" href={blob('level-2-build/README.md')}>Build</a>
-      <a className="m" href={blob('level-3-deep/README.md')}>Deep</a>
-      <a className="m" href={blob('docs/research-review.md')}>Review</a>
+      <a className="m" href={blob('PROPOSAL.md')}>Proposal</a>
+      <a className="m" href={blob('REPORT.md')}>Report</a>
       <span className="spacer" />
       <span className="status"><i /> Byte-identical reruns</span>
       <a href={REPO}>GitHub ↗</a>
@@ -138,14 +137,18 @@ function Hero() {
       </p>
       <div className="actions">
         <a className="btn primary" href="#play">Open the memory playground</a>
-        <a className="btn ghost" href={blob('level-3-deep/README.md')}>Read the verdict</a>
-        <span className="hint">Reproduce with <code>python level-3-deep/run_deep.py</code></span>
+        <a className="btn ghost" href={blob('REPORT.md')}>Read the report</a>
+        <span className="hint">Reproduce with <code>python src/make_results.py --check</code></span>
       </div>
       <div className="tiles">
         {DESIGNS.map(([k, l]) => (
           <div className="tile" key={k}><div className="num">{D[k].correct}<small className="of">/{Q}</small></div><div className="cap">{l}: correct answers, {fmt(D[k].words_total)} words read</div></div>
         ))}
         <div className="tile"><div className="num">{D.extended.words_per_correct}</div><div className="cap">Words per correct answer, tiered extended (full: {D.full.words_per_correct.toFixed(2)}, tiered: {D.tiered.words_per_correct})</div></div>
+      </div>
+      <p className="sub" style={{ marginTop: 18 }}><b>Verdict: {verdict}.</b> Stages and verdict are read from README.md word for word; the plan is PROPOSAL.md.</p>
+      <div className="chips" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 8 }}>
+        {stages.map(([s, st, d]) => <span key={s} className={`pill ${st === 'DONE' ? 'good' : st === 'DRAFT' ? 'warn' : 'info'}`}>{s}: {st}{d ? ` ${d}` : ''}</span>)}
       </div>
     </header>
   );
@@ -229,7 +232,7 @@ function Playground() {
           <p className="eyebrow">Live playground</p>
           <h2>Edit the conversation and watch <em>phrasing</em> decide what gets stored.</h2>
           <p className="sub">
-            A JavaScript port of <a href={blob('level-1-learn/memory.py')}>memory.py</a> and <a href={blob('level-2-build/memory_build.py')}>memory_build.py</a> runs
+            A JavaScript port of <a href={blob('src/memory.py')}>memory.py</a> and <a href={blob('src/memory_build.py')}>memory_build.py</a> runs
             on the real benchmark turns, read from those files at build time. The build fails unless this port reproduces every recorded answer, word count and
             operation count. It opens on the Learn conversation&apos;s one tiered miss. Add <q>{EXAMPLE}</q>, ask about the custom label <i>{UNHANDLED_Q.store_key}</i>,
             and every design returns None; reword it as <q>{REWORDED}</q> and the store picks it up.
@@ -330,7 +333,7 @@ function WindowSweep() {
           <h2>The window rescues missed facts only when it grows to <em>{firstFull.window} turns</em>, and by then it reads {fmt(firstFull.tiered_words)} words.</h2>
           <p className="sub">
             The recorded runs fix the window at {W4} turns. Drag it from 0 to {maxW}: the port reruns tiered and tiered extended on all {Q} Build questions in your browser.
-            Lines are the recorded Python sweep (<a href={blob('level-2-build/ablations.py')}>ablations.py</a>); the dots are computed live, and the build checks the two agree at every size.
+            Lines are the recorded Python sweep (<a href={blob('src/ablations.py')}>ablations.py</a>); the dots are computed live, and the build checks the two agree at every size.
             The jumps happen where the window first covers the turns holding the non-canonical facts, so this measures placement luck, not a better design.
           </p>
         </div>
@@ -451,7 +454,7 @@ function Frontier() {
         Total cost = words read + V × answers missed, where V is the value of one correct answer in words. Tiered memory saves {fmt(be.tiered_vs_full_words_saved)} words
         against full context and loses {be.tiered_vs_full_answers_lost} answers, so it breaks even at V = {be.tiered_vs_full_breakeven_value_words.toFixed(2)}. The extension
         recovers {be.extended_vs_tiered_answers_gained} answers for {be.extended_vs_tiered_extra_words} extra words, {be.extended_vs_tiered_cost_per_recovered_word} words per answer
-        (<a href={blob('level-3-deep/results_deep.json')}>results_deep.json</a>). On this set the extended design never costs more than full context.
+        (<a href={blob('results/results_deep.json')}>results_deep.json</a>). On this set the extended design never costs more than full context.
       </p>
       <div className="grid2" style={{ marginTop: 16 }}>
         <div>
@@ -579,7 +582,7 @@ function Limits() {
           </tbody>
         </table>
       </div>
-      <h3 style={{ marginTop: 20 }}>Failure modes (from the level READMEs)</h3>
+      <h3 style={{ marginTop: 20 }}>Failure modes (from REPORT.md)</h3>
       <div className="grid2" style={{ marginTop: 10 }}>
         {modes.map(([t, d]) => <div className="tile" key={t}><h3>{t}</h3><p className="hint" style={{ margin: '4px 0 0' }}>{d}</p></div>)}
       </div>
@@ -591,29 +594,27 @@ function Limits() {
         <dt>Words read</dt><dd>Whitespace-separated words in the text a design reads. A proxy for tokens, not a tokenizer count.</dd>
         <dt>Operations</dt><dd>Turns scanned or store and window reads, counted. A latency proxy; no wall-clock time is measured.</dd>
       </dl>
-      <p className="hint" style={{ marginTop: 12 }}>Also: {build.conversations} small hand-built conversations, no confidence intervals, no real dialogue, and the related-work comparison is still a draft. The full review is in <a href={blob('docs/research-review.md')}>docs/research-review.md</a>.</p>
+      <p className="hint" style={{ marginTop: 12 }}>Also: {build.conversations} small hand-built conversations (so the intervals are a floor, not a population estimate), no real dialogue, and no measured comparison with related work. The full review is in <a href={blob('REPORT.md')}>REPORT.md</a>.</p>
     </section>
   );
 }
 
 function Reproduce() {
-  const hashes = [['results_learn.json', sha(learnReadme)], ['results_build.json', sha(buildReadme)], ['results_deep.json', sha(deepReadme)]];
+  const hashes = ['results_learn.json', 'results_build.json', 'results_ablations.json', 'results_deep.json'].map((f) => [f, sha(f)]);
   const docs = [
-    ['SPEC.md', 'Spec', 'Scope and acceptance criteria'],
-    ['level-1-learn/README.md', 'Learn', 'One conversation, two designs'],
-    ['level-2-build/README.md', 'Build', 'A/B run, four strata'],
-    ['level-3-deep/README.md', 'Deep', 'Verdict, break-even, projection'],
-    ['docs/research-review.md', 'Research review', 'Rubric grades and open gaps'],
-    ['level-2-build/ablations.py', 'Ablations', 'Window, write cost, held-out'],
+    ['PROPOSAL.md', 'Proposal', 'Question, hypotheses, next cycle (not pre-registered)'],
+    ['REPORT.md', 'Report', 'Learn, Build, Deep, ablations, hypotheses scored'],
+    ['experiments/2026-11-05-build-design.md', 'Designs', 'Level designs with hand-computed oracles'],
+    ['src/ablations.py', 'Ablations', 'Window, write cost, held-out'],
   ];
   return (
     <section id="reproduce" className="card window reveal" data-title="Terminal — python run_*.py">
       <p className="eyebrow">Reproduce it</p>
       <h2>Standard-library Python, seconds to run, <em>byte-identical</em> output.</h2>
       <ol className="steps" style={{ marginTop: 16 }}>
-        <li><span className="n">1</span><div><b>Run the four runners</b><div className="hint"><code>python level-1-learn/run_learn.py && python level-2-build/run_build.py && python level-2-build/run_ablations.py && python level-3-deep/run_deep.py</code></div></div></li>
-        <li><span className="n">2</span><div><b>Run the tests</b> ({checks[0]} Learn, {checks[1]} Build and {checks[2]} Deep checks, plus the smoke and ablation tests)<div className="hint"><code>python tests/test_smoke.py && python tests/test_learn_memory.py && python tests/test_build_memory.py && python tests/test_deep_memory.py && python tests/test_ablations.py</code></div></div></li>
-        <li><span className="n">3</span><div><b>Compare hashes</b> (recorded in the level READMEs)
+        <li><span className="n">1</span><div><b>Regenerate the four results files and compare</b><div className="hint"><code>python src/make_results.py --check</code></div></div></li>
+        <li><span className="n">2</span><div><b>Run the tests</b> ({checks[0]} Learn, {checks[1]} Build and {checks[2]} Deep checks, plus the layout and ablation tests)<div className="hint"><code>python tests/test_smoke.py && python tests/test_learn_memory.py && python tests/test_build_memory.py && python tests/test_deep_memory.py && python tests/test_ablations.py</code></div></div></li>
+        <li><span className="n">3</span><div><b>Compare hashes</b> (recorded in REPORT.md)
           <div className="hint">{hashes.map(([f, h]) => <div key={f}><code>{f} {h}</code></div>)}</div></div></li>
       </ol>
       <div className="docs" style={{ marginTop: 20 }}>

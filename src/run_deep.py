@@ -12,8 +12,7 @@ from verdict import run_deep  # noqa: E402
 
 if __name__ == "__main__":
     results = run_deep()
-    out = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                       "results_deep.json")
+    out = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results", "results_deep.json")
     with open(out, "w", encoding="utf-8") as fh:
         json.dump(results, fh, indent=2, sort_keys=True)
         fh.write("\n")
