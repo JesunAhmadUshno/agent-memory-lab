@@ -12,7 +12,7 @@ from ablations import run_ablations  # noqa: E402
 
 if __name__ == "__main__":
     results = run_ablations()
-    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results_ablations.json")
+    out = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results", "results_ablations.json")
     with open(out, "w", encoding="utf-8") as fh:
         json.dump(results, fh, indent=2, sort_keys=True)
         fh.write("\n")

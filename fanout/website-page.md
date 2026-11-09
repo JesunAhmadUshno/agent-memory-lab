@@ -53,14 +53,13 @@ only the phrasing forms its extractors parse.
   tiered, and extended alike. The failure there is extraction,
   not storage.
 
-## Levels and grades
+## Levels
 
 - Learn: full 8 of 8, tiered 7 of 8, on one synthetic
-  conversation. Grade 8,500 of 10,000.
-- Build: the A/B run at larger scale, four named strata. Grade
-  7,850 of 10,000.
+  conversation.
+- Build: the A/B run at larger scale, four named strata.
 - Deep: the written verdict, computed from the Build numbers
-  with no new benchmark run. Grade 8,000 of 10,000.
+  with no new benchmark run.
 
 Tests: 428 checks (76 Learn, 284 Build, 68 Deep), plus the
 scaffold smoke test.

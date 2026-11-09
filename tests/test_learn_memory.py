@@ -1,6 +1,6 @@
 """Hand-computed Learn tests for agent-memory-lab.
 
-Every expected value below is an oracle from level-1-learn/LEARN-SPEC.md,
+Every expected value below is an oracle from experiments/2026-11-05-learn-design.md,
 counted by hand before the code was written. Run: python tests/test_learn_memory.py
 """
 import json
@@ -8,7 +8,7 @@ import os
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(ROOT, "level-1-learn"))
+sys.path.insert(0, os.path.join(ROOT, "src"))
 
 from memory import (  # noqa: E402
     QUESTIONS,
@@ -97,7 +97,7 @@ q6 = [row for row in r["per_question"] if row["id"] == "Q6"][0]
 check(q6["full_answer"] == "green" and q6["tiered_answer"] == "green", "Q6 update handled by both")
 
 # Results file, if present, matches the runner output exactly.
-path = os.path.join(ROOT, "level-1-learn", "results_learn.json")
+path = os.path.join(ROOT, "results", "results_learn.json")
 if os.path.exists(path):
     with open(path, encoding="utf-8") as fh:
         saved = json.load(fh)

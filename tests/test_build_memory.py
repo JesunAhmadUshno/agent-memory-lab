@@ -1,6 +1,6 @@
 """Hand-computed Build tests for agent-memory-lab.
 
-Every expected value below is an oracle from level-2-build/BUILD-SPEC.md,
+Every expected value below is an oracle from experiments/2026-11-05-build-design.md,
 computed from the fixed synthetic turn texts before the code ran.
 Run: python tests/test_build_memory.py
 """
@@ -9,8 +9,7 @@ import os
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(ROOT, "level-1-learn"))
-sys.path.insert(0, os.path.join(ROOT, "level-2-build"))
+sys.path.insert(0, os.path.join(ROOT, "src"))
 
 from memory import build_store, word_count  # noqa: E402
 from memory_build import (  # noqa: E402
@@ -179,7 +178,7 @@ for qid, later in (("A8", "green"), ("B8", "sushi"), ("C8", "yellow")):
     check(row["extended_answer"] == later, qid + " extended returns update")
 
 # Results file, if present, matches the runner output exactly.
-path = os.path.join(ROOT, "level-2-build", "results_build.json")
+path = os.path.join(ROOT, "results", "results_build.json")
 if os.path.exists(path):
     with open(path, encoding="utf-8") as fh:
         saved = json.load(fh)

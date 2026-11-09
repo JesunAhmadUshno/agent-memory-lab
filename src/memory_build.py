@@ -5,7 +5,7 @@ each, 54 turns, 418 words, labelled synthetic), 24 labelled questions
 in four named strata: canonical, update, noncanonical_extended, and
 noncanonical_unhandled.
 
-Designs, reusing the Learn code by import (level-1-learn/memory.py):
+Designs, reusing the Learn code by import (src/memory.py):
 A) Full context: the Learn answer_full, per conversation.
 B) Tiered memory: the Learn design unchanged (canonical store plus a
    4-turn recent window), answered by the Learn answer_tiered.
@@ -22,10 +22,7 @@ import os
 import re
 import sys
 
-_LEARN_DIR = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    "level-1-learn")
-sys.path.insert(0, _LEARN_DIR)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from memory import (  # noqa: E402
     answer_full,

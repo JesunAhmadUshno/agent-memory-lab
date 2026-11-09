@@ -35,59 +35,61 @@ Optional smoke check, before the levels:
 python tests/test_smoke.py
 ```
 
-Expected: scaffold smoke test: PASS, 8 files present.
+Expected: layout check: PASS. (Paths updated on 2026-11-08 for the
+portfolio standard v2 layout: code in src/, results in results/, the
+level READMEs folded into REPORT.md, the level specs in experiments/.)
 
 ## Step 1: Level 1, Learn, full context against tiered memory
 
-Read level-1-learn/README.md first.
+Read REPORT.md, section Learn, first.
 
 ```text
-python level-1-learn/run_learn.py
+python src/run_learn.py
 python tests/test_learn_memory.py
 ```
 
 Expected: full: 8 of 8 tiered: 7 of 8; words: full total 1432
 tiered total 269; learn memory tests: PASS, 76 checks. The
-runner writes level-1-learn/results_learn.json deterministically:
+runner writes results/results_learn.json deterministically:
 two runs are byte-identical. The one tiered miss is Q4, the door
 code, whose non-canonical phrasing the write-time extractor
 misses.
 
 ## Step 2: Level 2, Build, the A/B run at larger scale
 
-Read level-2-build/README.md and level-2-build/BUILD-SPEC.md.
+Read REPORT.md, section Build, and experiments/2026-11-05-build-design.md.
 
 ```text
-python level-2-build/run_build.py
+python src/run_build.py
 python tests/test_build_memory.py
 ```
 
 Expected: full: 21 of 24 tiered: 15 of 24 extended: 21 of 24;
 words: full total 3344 tiered total 711 extended total 735;
 build memory tests: PASS, 284 checks. The runner writes
-level-2-build/results_build.json deterministically. Read the
-per-stratum table in the Build README: the original tiered
+results/results_build.json deterministically. Read the
+per-stratum table in REPORT.md, section Build: the original tiered
 design scores 0 of 6 on noncanonical_extended, the extended
 design recovers all 6, and all three designs score 0 of 3 on
 noncanonical_unhandled.
 
 ## Step 3: Level 3, Deep, the verdict
 
-Read level-3-deep/README.md and level-3-deep/DEEP-SPEC.md. Deep
+Read REPORT.md, section Deep, and experiments/2026-11-05-deep-design.md. Deep
 runs no new benchmark; it computes the verdict from the Build
 run.
 
 ```text
-python level-3-deep/run_deep.py
+python src/run_deep.py
 python tests/test_deep_memory.py
 ```
 
 Expected: verdict: tiered pays on covered strata: True
 extension cost per recovered answer: 4.0 words; deep memory
 tests: PASS, 68 checks. The runner writes
-level-3-deep/results_deep.json deterministically. Words per
+results/results_deep.json deterministically. Words per
 correct answer: full 159.238, tiered 47.4, tiered extended 35.0.
-The scaling table in the Deep README is a labelled projection
+The scaling table in REPORT.md, section Deep is a labelled projection
 from measured word counts, not a measurement at scale.
 
 ## Step 4: Run the whole suite
@@ -100,14 +102,14 @@ python tests/test_deep_memory.py
 ```
 
 Expected: 428 checks in total (76 Learn, 284 Build, 68 Deep),
-plus the scaffold smoke test, all passing.
+plus the layout check, all passing.
 
 ## What to try next
 
-Change one planted fact in level-1-learn/memory.py to a new
+Change one planted fact in src/memory.py to a new
 non-canonical form, re-run Learn, and watch which design loses
 the question and why. That single experiment teaches the central
 lesson of this project: in a tiered design, extraction coverage,
-not storage size, decides accuracy. The v1.1 backlog in
-ROADMAP.md names the follow-on work, semantic extraction first.
+not storage size, decides accuracy. The v1.1 backlog (now in
+PROPOSAL.md, section Next cycle) names the follow-on work, semantic extraction first.
 None of the v1.1 items are done at v1.0.

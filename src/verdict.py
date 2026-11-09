@@ -1,9 +1,9 @@
 """Agent memory Deep: the verdict analysis over the Build run.
 
 No new benchmark is run here. This module imports the measured Build
-results (level-2-build/memory_build.py run_all) and reads the Learn
+results (src/memory_build.py run_all) and reads the Learn
 results file, then computes the cost-benefit verdict defined in
-DEEP-SPEC.md: words per correct answer, savings, break-even values,
+experiments/2026-11-05-deep-design.md: words per correct answer, savings, break-even values,
 per-stratum efficiency, and a scaling projection.
 
 The projection is arithmetic from measured word counts under a stated
@@ -21,7 +21,7 @@ import os
 import sys
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(_ROOT, "level-2-build"))
+sys.path.insert(0, os.path.join(_ROOT, "src"))
 
 from memory_build import run_all as build_run_all  # noqa: E402
 
@@ -40,7 +40,7 @@ def _per_correct(words, correct):
 
 def run_deep():
     b = build_run_all()
-    learn_path = os.path.join(_ROOT, "level-1-learn", "results_learn.json")
+    learn_path = os.path.join(_ROOT, "results", "results_learn.json")
     with open(learn_path, encoding="utf-8") as fh:
         learn = json.load(fh)
 

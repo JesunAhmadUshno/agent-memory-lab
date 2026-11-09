@@ -1,11 +1,10 @@
 name: Pages
 
-# Builds the live dashboard in site/ from the committed level-*/results_*.json files and Python sources, and publishes it to GitHub Pages.
-# Takes effect once the Pages source is set to GitHub Actions (it currently serves main:/docs, a static text summary).
+# Builds the live dashboard in site/ from results/*.json, the Python sources in src/, README.md and REPORT.md, and publishes it to GitHub Pages.
 on:
   push:
     branches: [main]
-    paths: ['site/**', 'level-*/results_*.json', 'level-*/*.py', 'level-*/README.md', 'docs/index.md', '.github/workflows/pages.yml']
+    paths: ['site/**', 'results/**', 'src/**', 'README.md', 'REPORT.md', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:
