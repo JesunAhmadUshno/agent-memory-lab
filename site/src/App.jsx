@@ -100,7 +100,7 @@ function Select({ label, value, onChange, options }) {
 export default function App() {
   useReveal();
   return (
-    <div className="wrap">
+    <div className="wrap"><a className="skip" href="#top">Skip to content</a>
       <MenuBar />
       <div className="glow" aria-hidden="true" />
       <Hero />
@@ -116,7 +116,7 @@ export default function App() {
       <footer>
         Synthetic data built in code. Cost is a word count, latency is a counted proxy. Code: Apache-2.0. Every number on this page is read from the
         repo&apos;s <code>results_*.json</code> files and Python sources at build time; the playground and sliders run a checked JavaScript port in your browser.
-      </footer>
+      <nav className="support" aria-label="Support this work"><a href="https://github.com/sponsors/JesunAhmadUshno">Sponsor this work</a><a href="https://github.com/sponsors/JesunAhmadUshno">Donate</a><a href="https://buymeacoffee.com/jesun">Buy Me a Coffee</a><a href="https://calendly.com/jesunahmadushno/30min">Work with me</a></nav></footer>
     </div>
   );
 }
@@ -124,7 +124,7 @@ export default function App() {
 function Hero() {
   const ratio = deep.savings.extended.ratio_vs_full.toFixed(1);
   return (
-    <header className="card hero window" id="top" data-title="agent-memory-lab — README">
+    <header className="card hero window" id="top" data-title="agent-memory-lab - README">
       <div className="head">
         <p className="eyebrow">Conversation memory · three-level study</p>
         <span className="pill warn">● Synthetic data · word-count cost · counted latency</span>
@@ -167,7 +167,7 @@ function How() {
     </g>
   );
   return (
-    <section id="how" className="card window reveal" data-title="memory.py — two designs">
+    <section id="how" className="card window reveal" data-title="memory.py - two designs">
       <p className="eyebrow">How it works</p>
       <h2>One design re-reads everything. The other <em>decides at write time</em> what is worth keeping.</h2>
       <div className="grid2" style={{ marginTop: 16 }}>
@@ -226,7 +226,7 @@ function Playground() {
   const edited = text !== convTurns(conv).join('\n');
   const winStart = Math.max(0, turns.length - W4);
   return (
-    <section id="play" className="card window reveal" data-title="memory_playground — live">
+    <section id="play" className="card window reveal" data-title="memory_playground - live">
       <div className="head">
         <div>
           <p className="eyebrow">Live playground</p>
@@ -326,7 +326,7 @@ function WindowSweep() {
   const cur = { x: size, tiered_correct: live.tiered.correct, extended_correct: live.extended.correct, tiered_words: live.tiered.words, extended_words: live.extended.words };
   const yWords = Math.ceil(rows[rows.length - 1].extended_words / 500) * 500;
   return (
-    <section id="window" className="card window reveal" data-title="window_sweep — results_ablations.json">
+    <section id="window" className="card window reveal" data-title="window_sweep - results_ablations.json">
       <div className="head">
         <div>
           <p className="eyebrow">Ablation · recent-window size</p>
@@ -379,7 +379,7 @@ function AB() {
     <td className={r[`${k}_correct`] ? 'ok' : 'no'}>{r[`${k}_answer`] ?? 'None'} <span className="hint">· {r[`${k}_words_read`]}w</span></td>
   );
   return (
-    <section id="ab" className="card window reveal" data-title={`results_build.json — ${Q} questions`}>
+    <section id="ab" className="card window reveal" data-title={`results_build.json - ${Q} questions`}>
       <p className="eyebrow">A/B table and strata · recorded</p>
       <h2>The whole accuracy gap sits in <em>one stratum</em>: facts phrased outside the canonical form.</h2>
       <p className="sub">
@@ -447,7 +447,7 @@ function Frontier() {
   const sx = (v) => pad.l + (v / xMax) * (W - pad.l - pad.r);
   const sy = (v) => pad.t + (1 - (v - yLo) / (Q - yLo)) * (H - pad.t - pad.b);
   return (
-    <section id="frontier" className="card window reveal" data-title="verdict.py — words vs answers">
+    <section id="frontier" className="card window reveal" data-title="verdict.py - words vs answers">
       <p className="eyebrow">Cost frontier · arithmetic on recorded numbers</p>
       <h2>Which design wins depends on what a <em>missed answer</em> is worth.</h2>
       <p className="sub">
@@ -503,7 +503,7 @@ function Projection() {
   const sx = (v) => pad.l + (v / fMax) * (W - pad.l - pad.r);
   const sy = (v) => pad.t + (1 - v / yMax) * (H - pad.t - pad.b);
   return (
-    <section id="projection" className="card window reveal" data-title="projection — not measured">
+    <section id="projection" className="card window reveal" data-title="projection - not measured">
       <div className="head">
         <div>
           <p className="eyebrow">Scaling projection · not a measurement</p>
@@ -545,7 +545,7 @@ function Limits() {
     ['Value before label', `"${EXAMPLE}" defeats all three designs, full context included: ${byStratum('noncanonical_unhandled')}.`],
   ];
   return (
-    <section id="limits" className="card window reveal" data-title="ablations.py — write cost · held-out · limits">
+    <section id="limits" className="card window reveal" data-title="ablations.py - write cost · held-out · limits">
       <p className="eyebrow">Limits and threats to validity</p>
       <h2>What this study <em>does not</em> show.</h2>
       <div className="grid2" style={{ marginTop: 16 }}>
@@ -608,7 +608,7 @@ function Reproduce() {
     ['src/ablations.py', 'Ablations', 'Window, write cost, held-out'],
   ];
   return (
-    <section id="reproduce" className="card window reveal" data-title="Terminal — python run_*.py">
+    <section id="reproduce" className="card window reveal" data-title="Terminal - python run_*.py">
       <p className="eyebrow">Reproduce it</p>
       <h2>Standard-library Python, seconds to run, <em>byte-identical</em> output.</h2>
       <ol className="steps" style={{ marginTop: 16 }}>
